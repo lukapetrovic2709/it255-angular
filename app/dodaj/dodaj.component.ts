@@ -17,10 +17,15 @@ viewBindings: [FORM_BINDINGS]
 
 export class dodajSobu {
 
+
   registerForm: ControlGroup;
   http: Http;
   router: Router;
   postResponse: String;
+
+
+
+
   constructor(builder: FormBuilder, http: Http,  router: Router) {
   this.http = http;
   this.router = router;
@@ -30,26 +35,30 @@ export class dodajSobu {
      brojKreveta: ["", Validators.none],
      pogledNa: ["", Validators.none],
    });
-  }
-
-  onRegister(): void {
-  var data = "tipSobe="+this.registerForm.value.tipSobe+"&kvadrata="+this.registerForm.value.kvadrata+"&brojKreveta="+this.registerForm.value.brojKreveta+"&pogledNa="+this.registerForm.value.pogledNa;
-  var headers = new Headers();
-  headers.append('Content-Type', 'application/x-www-form-urlencoded');
-  this.http.post('http://localhost/it255/php/dodajSobu.php',data, {headers:headers})
-    .map(res => res)
-    .subscribe( data => this.postResponse = data,
-  err => alert(JSON.stringify(err)),
-  () => {
-   if(this.postResponse._body == "ok"){
-   alert("Uspesno dodata soba");
-      this.router.parent.navigate(['./MainPage']);
-   }else{
-    alert("Neuspesno dodata soba");
-   }
-   }
-  );
 
   }
+
+  onAddRoom(): void {
+        var data =
+            "tipSobe="+this.registerForm.value.tipSobe+"&kvadrata="+this.registerForm.value.kvadrata+"&brojKreveta="
+            +this.registerForm.value.brojKreveta+"&pogledNa="+this.registerForm.value.pogledNa;
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        this.http.post('http://localhost/it255/php/dodajSobu.php',data, {headers:headers})
+            .map(res => res)
+            .subscribe( data => this.postResponse = data,
+                err => alert(JSON.stringify(err)),
+                () => {
+                  if(this.postResponse._body.indexOf("error") === -1){
+                      alert("Uspesno dodavanje sobe");
+                      this.router.parent.navigate(['./Sobe']);
+                  }else{
+                      alert("Greška");
+                  }
+                }
+            );
+    }
+
 
 }

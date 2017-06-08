@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.component', './aboutus/aboutus.component', './form/form.component', './form2/form2.component', './sobe/sobe.component', './dodaj/dodaj.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.component', './aboutus/aboutus.component', './form/form.component', './form2/form2.component', './sobe/sobe.component', './dodaj/dodaj.component', './azuriraj/azuriraj.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.compon
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, mainpage_component_1, aboutus_component_1, form_component_1, form2_component_1, sobe_component_1, dodaj_component_1;
+    var core_1, router_1, mainpage_component_1, aboutus_component_1, form_component_1, form2_component_1, sobe_component_1, dodaj_component_1, azuriraj_component_1;
     var AppComponent;
     return {
         setters:[
@@ -37,6 +37,9 @@ System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.compon
             },
             function (dodaj_component_1_1) {
                 dodaj_component_1 = dodaj_component_1_1;
+            },
+            function (azuriraj_component_1_1) {
+                azuriraj_component_1 = azuriraj_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -75,6 +78,7 @@ System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.compon
                         { path: '/form2', name: 'FormPage2', component: form2_component_1.FormComponent2 },
                         { path: '/sobe', name: 'Sobe', component: sobe_component_1.Sobe },
                         { path: '/dodaj', name: 'Dodaj', component: dodaj_component_1.dodajSobu },
+                        { path: '/azuriraj/:id', name: 'Azuriraj', component: azuriraj_component_1.UpdateComponent },
                     ]), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], AppComponent);

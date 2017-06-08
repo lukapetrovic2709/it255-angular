@@ -6,6 +6,7 @@ import { FormComponent } from './form/form.component';
 import { FormComponent2 } from './form2/form2.component';
 import {Sobe} from './sobe/sobe.component';
 import {dodajSobu} from './dodaj/dodaj.component';
+import {UpdateComponent} from './azuriraj/azuriraj.component';
 
 @Component({
   selector: 'moja-aplikacija',
@@ -20,7 +21,7 @@ import {dodajSobu} from './dodaj/dodaj.component';
   {path:'/form2', name:'FormPage2', component: FormComponent2},
   {path:'/sobe', name: 'Sobe', component: Sobe},
   {path:'/dodaj', name: 'Dodaj', component: dodajSobu},
-
+  {path:'/azuriraj/:id', name: 'Azuriraj', component: UpdateComponent},
 ])
 
 export class AppComponent {

@@ -48,6 +48,18 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
                         }, 200);
                     });
                 }
+                Sobe.prototype.removeBook = function (item) {
+                    var _this = this;
+                    console.log("Remove: ", item);
+                    var headers = new http_1.Headers();
+                    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                    headers.append('token', localStorage.getItem('token'));
+                    this.http.get('http://localhost/it255/php/deleteroom.php?id=' + item, { headers: headers }).subscribe(function (data) { return _this.postResponse = data; });
+                    location.reload();
+                };
+                Sobe.prototype.editItem = function (item) {
+                    this.router.parent.navigate(['./Azuriraj', { id: item.id }]);
+                };
                 Sobe = __decorate([
                     core_1.Component({
                         selector: 'Sobe',

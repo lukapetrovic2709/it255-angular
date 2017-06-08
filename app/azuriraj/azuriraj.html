@@ -1,7 +1,7 @@
-
-<h1> Dodaj sobu: </h1>
+<h1> Ažuriraj sobu: </h1>
 
 <form role="form" [ngFormModel]="registerForm">
+
  <div class="form-group">
     <label for="tipSobe">Tip sobe:</label>
     <input type="text" class="form-control" ngControl='tipSobe'>
@@ -18,7 +18,6 @@
     <label for="pogledNa">Pogled na:</label>
     <input type="text" class="form-control" ngControl='pogledNa'>
   </div>
-  <button (click)="onAddRoom()" class="btn btn-default">Dodaj</button>
-</form>
 
-<br/> <br/> <br/>
+  <button (click)="onEditRoom()" class="btn btn-default">Ažuriraj</button>
+</form>

@@ -19,7 +19,7 @@
 	 <li [class.active]="router.isRouteActive(router.generate(['AboutUs']))"><a [routerLink]="['AboutUs']">O nama</a></li>
 	 <li [class.active]="router.isRouteActive(router.generate(['Sobe']))"><a [routerLink]="['Sobe']">Pregled soba</a></li>
 	 <li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['Dodaj']))"><a [routerLink]="['Dodaj']">Dodaj sobu</a></li>
-
+   
  </ul>
 
  <ul class="nav navbar-nav navbar-right" id="desno">
