@@ -43,13 +43,16 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
                         .map(function (res) { return res.json(); })
                         .subscribe(function (rooms) {
                         _this.rooms = rooms.rooms;
+                        setInterval(function () {
+                            $('table').DataTable();
+                        }, 200);
                     });
                 }
                 Sobe = __decorate([
                     core_1.Component({
                         selector: 'Sobe',
                         templateUrl: 'app/sobe/sobe.html',
-                        pipes: [search_1.SearchPipe, search2_1.SearchPipe2]
+                        pipes: [search_1.SearchPipe, search2_1.SearchPipe2],
                     }), 
                     __metadata('design:paramtypes', [http_1.Http, router_1.Router])
                 ], Sobe);

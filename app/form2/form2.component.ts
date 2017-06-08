@@ -32,27 +32,25 @@ export class FormComponent2 {
 
   }
   onLogin(): void {
- var data =
- "username="+this.loginForm.value.username+"&password="+this.loginForm.value.password;
- var headers = new Headers();
- headers.append('Content-Type', 'application/x-www-form-urlencoded');
- this.http.post('http://localhost/it255/php/loginservice.php',data, {headers:headers})
-  .map(res => res)
-  .subscribe( data => this.postResponse = data,
- err => alert(JSON.stringify(err)),
- () => {
- if(this.postResponse._body.indexOf("error") === -1){
- var obj = JSON.parse(this.postResponse._body);
- localStorage.setItem('token', obj.token);
-  this.router.parent.navigate(['./MainPage']);
- }else{
- var obj = JSON.parse(this.postResponse._body);
- document.getElementsByClassName("alert")[0].style.display = "block";
- document.getElementsByClassName("alert")[0].innerHTML =
- obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
- }
- }
- );
-  }
+var data =
+"username="+this.loginForm.value.username+"&password="+this.loginForm.value.password;
+var headers = new Headers();
+headers.append('Content-Type', 'application/x-www-form-urlencoded');
+this.http.post('http://localhost/it255/php/loginservice.php',data, {headers:headers})
+.map(res => res)
+.subscribe( data => this.postResponse = data,
+err => {
+var obj = JSON.parse(err._body);
+document.getElementsByClassName("alert")[0].style.display = "block";
+document.getElementsByClassName("alert")[0].innerHTML =
+obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
+},
+() => {
+var obj = JSON.parse(this.postResponse._body);
+localStorage.setItem('token', obj.token);
+this.router.parent.navigate(['./MainPage']);
+}
+);
+}
 
 }

@@ -14,20 +14,23 @@
 
 
 <div class="col-lg-12">
-<br/>Sobe: <br/>
-<div *ngFor="#soba of rooms| SearchPipe2: kvadrata | SearchPipe: brojKreveta">
-<br/>
-ID: {{soba.id}}
-<br/>
-Tip sobe: {{soba.tipSobe}}
-<br/>
-Kvadrata: {{soba.kvadrata}}
-<br/>
-Broj kreveta: {{soba.brojKreveta}}
-<br/>
-Pogled na: {{soba.pogledNa}}
-<br/>
-</div>
+	<table  class="display" cellspacing="0" >
+	    <thead>
+            <tr>
+                <th>Tip sobe: </th>
+                <th>Kvadrata: </th>
+                <th>Broj kreveta: </th>
+                  <th>Pogled na: </th>
+            </tr>
+        </thead>
 
-
+        <tbody>
+            <tr *ngFor="#soba of rooms| SearchPipe2: kvadrata | SearchPipe: brojKreveta">
+                <th>{{soba.tipSobe}}</th>
+                <th>{{soba.kvadrata}}</th>
+                  <th>{{soba.brojKreveta}}</th>
+                    <th>{{soba.pogledNa}}</th>
+            </tr>
+        </tbody>
+    </table>
 </div>

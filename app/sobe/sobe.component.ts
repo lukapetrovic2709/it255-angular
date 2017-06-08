@@ -6,11 +6,14 @@ import {FORM_DIRECTIVES , FORM_BINDINGS} from 'angular2/common';
 import {SearchPipe} from '../pipe/search';
 import {SearchPipe2} from '../pipe/search2';
 
+
 @Component({
 
  selector: 'Sobe',
  templateUrl: 'app/sobe/sobe.html',
- pipes: [SearchPipe, SearchPipe2]
+
+ pipes: [SearchPipe, SearchPipe2],
+
 })
 
 
@@ -30,7 +33,14 @@ export class Sobe {
   http.get('http://localhost/it255/php/get.php',{headers:headers})
   .map(res => res.json())
   .subscribe(rooms => {this.rooms = rooms.rooms;
+    setInterval(function(){
+			$('table').DataTable();
+			},200);
   });
 
 }
+
+
+
+
 }
