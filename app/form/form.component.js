@@ -38,6 +38,9 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                         firstName: ["", common_1.Validators.none],
                         lastName: ["", common_1.Validators.none],
                     });
+                    if (localStorage.getItem('token') != null) {
+                        this.router.parent.navigate(['MainPage']);
+                    }
                 }
                 FormComponent.prototype.onRegister = function () {
                     var _this = this;
@@ -47,12 +50,16 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                     this.http.post('http://localhost/it255/php/registerservice.php', data, { headers: headers })
                         .map(function (res) { return res; })
                         .subscribe(function (data) { return _this.postResponse = data; }, function (err) { return alert(JSON.stringify(err)); }, function () {
-                        if (_this.postResponse._body == "ok") {
-                            alert("Uspesna registracija");
+                        if (_this.postResponse._body.indexOf("error") === -1) {
+                            var obj = JSON.parse(_this.postResponse._body);
+                            localStorage.setItem('token', obj.token);
                             _this.router.parent.navigate(['./MainPage']);
                         }
                         else {
-                            alert("Neuspesna registracija");
+                            var obj = JSON.parse(_this.postResponse._body);
+                            document.getElementsByClassName("alert")[0].style.display = "block";
+                            document.getElementsByClassName("alert")[0].innerHTML =
+                                obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
                         }
                     });
                 };

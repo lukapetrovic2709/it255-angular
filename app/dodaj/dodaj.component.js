@@ -1,4 +1,4 @@
-System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router', 'angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router', "angular2/core"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var common_1, http_1, router_1, core_1;
-    var FormComponent2;
+    var dodajSobu;
     return {
         setters:[
             function (common_1_1) {
@@ -28,52 +28,47 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                 core_1 = core_1_1;
             }],
         execute: function() {
-            FormComponent2 = (function () {
-                function FormComponent2(builder, http, router) {
+            dodajSobu = (function () {
+                function dodajSobu(builder, http, router) {
                     this.http = http;
                     this.router = router;
-                    this.loginForm = builder.group({
-                        username: ["", common_1.Validators.none],
-                        password: ["", common_1.Validators.none],
+                    this.registerForm = builder.group({
+                        tipSobe: ["", common_1.Validators.none],
+                        kvadrata: ["", common_1.Validators.none],
+                        brojKreveta: ["", common_1.Validators.none],
+                        pogledNa: ["", common_1.Validators.none],
                     });
-                    if (localStorage.getItem('token') != null) {
-                        this.router.parent.navigate(['MainPage']);
-                    }
                 }
-                FormComponent2.prototype.onLogin = function () {
+                dodajSobu.prototype.onRegister = function () {
                     var _this = this;
-                    var data = "username=" + this.loginForm.value.username + "&password=" + this.loginForm.value.password;
+                    var data = "tipSobe=" + this.registerForm.value.tipSobe + "&kvadrata=" + this.registerForm.value.kvadrata + "&brojKreveta=" + this.registerForm.value.brojKreveta + "&pogledNa=" + this.registerForm.value.pogledNa;
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-                    this.http.post('http://localhost/it255/php/loginservice.php', data, { headers: headers })
+                    this.http.post('http://localhost/it255/php/dodajSobu.php', data, { headers: headers })
                         .map(function (res) { return res; })
                         .subscribe(function (data) { return _this.postResponse = data; }, function (err) { return alert(JSON.stringify(err)); }, function () {
-                        if (_this.postResponse._body.indexOf("error") === -1) {
-                            var obj = JSON.parse(_this.postResponse._body);
-                            localStorage.setItem('token', obj.token);
+                        if (_this.postResponse._body == "ok") {
+                            alert("Uspesno dodata soba");
                             _this.router.parent.navigate(['./MainPage']);
                         }
                         else {
-                            var obj = JSON.parse(_this.postResponse._body);
-                            document.getElementsByClassName("alert")[0].style.display = "block";
-                            document.getElementsByClassName("alert")[0].innerHTML =
-                                obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
+                            alert("Neuspesno dodata soba");
                         }
                     });
                 };
-                FormComponent2 = __decorate([
+                dodajSobu = __decorate([
                     core_1.Component({
-                        selector: 'FormPage2',
-                        templateUrl: 'app/form2/form2.html',
+                        selector: 'Dodaj',
+                        templateUrl: 'app/dodaj/dodaj.html',
                         directives: [common_1.FORM_DIRECTIVES],
                         viewBindings: [common_1.FORM_BINDINGS]
                     }), 
                     __metadata('design:paramtypes', [common_1.FormBuilder, http_1.Http, router_1.Router])
-                ], FormComponent2);
-                return FormComponent2;
+                ], dodajSobu);
+                return dodajSobu;
             }());
-            exports_1("FormComponent2", FormComponent2);
+            exports_1("dodajSobu", dodajSobu);
         }
     }
 });
-//# sourceMappingURL=form2.component.js.map
+//# sourceMappingURL=dodaj.component.js.map
